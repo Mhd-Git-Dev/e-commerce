@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block title %}Déconnexion · Merchshop{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-sm">
+  <h1 class="text-2xl font-bold mb-6 text-center">Se déconnecter</h1>
+  
+  <p class="text-center text-gray-600 mb-6">Êtes-vous sûr de vouloir vous déconnecter ?</p>
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+    {% endif %}
+    
+    <button type="submit" class="w-full text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+      Se déconnecter
+    </button>
+  </form>
+
+  <div class="text-center mt-4">
+    <a href="/" class="text-blue-700 underline text-sm">Retour à l'accueil</a>
+  </div>
+</div>
+{% endblock %}

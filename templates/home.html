@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}Accueil · Merchshop{% endblock %}
+{% block content %}
+{% include "partials/hero.html" %}
+
+<section class="py-8">
+  <h2 class="text-2xl font-bold mb-4">Produits en vedette</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for product in featured_products %}
+      {% include "partials/product_card.html" with product=product %}
+    {% endfor %}
+  </div>
+</section>
+
+<section class="py-8">
+  <h2 class="text-2xl font-bold mb-4">Collections actives</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for collection in active_collections %}
+      {% include "partials/collection_card.html" with collection=collection %}
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

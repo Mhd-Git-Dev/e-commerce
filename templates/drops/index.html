@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% block title %}Drops · Merchshop{% endblock %}
+{% block content %}
+<section class="py-4">
+  <h1 class="text-3xl font-bold mb-4">Drops</h1>
+
+  {% if live %}
+  <h2 class="text-xl font-semibold mt-4 mb-2">En cours</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for c in live %}
+      {% include "partials/collection_card.html" with collection=c %}
+    {% endfor %}
+  </div>
+  {% endif %}
+
+  <h2 class="text-xl font-semibold mt-8 mb-2">À venir</h2>
+  {% if upcoming %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for c in upcoming %}
+      {% include "partials/collection_card.html" with collection=c %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-gray-600">Aucune collection à venir.</p>
+  {% endif %}
+
+  <h2 class="text-xl font-semibold mt-8 mb-2">Passées</h2>
+  {% if past %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for c in past %}
+      {% include "partials/collection_card.html" with collection=c %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-gray-600">Aucune collection passée.</p>
+  {% endif %}
+</section>
+{% endblock %}

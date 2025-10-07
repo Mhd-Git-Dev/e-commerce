@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load widget_tweaks %}
+
+{% block title %}Connexion · Merchshop{% endblock %}
+
+{% block content %}
+<div class="mx-auto max-w-sm">
+  <h1 class="text-2xl font-bold mb-6 text-center">Se connecter</h1>
+  
+  {% if form.errors %}
+    <div class="mb-4 p-4 bg-red-50 border border-red-200 rounded-lg">
+      <p class="text-red-600 text-sm">Veuillez corriger les erreurs ci-dessous.</p>
+    </div>
+  {% endif %}
+
+  <form method="post" class="space-y-4">
+    {% csrf_token %}
+    
+    <div>
+      <label for="{{ form.login.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900">
+        {{ form.login.label }}
+      </label>
+      {{ form.login|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" }}
+      {% if form.login.errors %}
+        <p class="text-red-600 text-sm mt-1">{{ form.login.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    <div>
+      <label for="{{ form.password.id_for_label }}" class="block mb-2 text-sm font-medium text-gray-900">
+        {{ form.password.label }}
+      </label>
+      {{ form.password|add_class:"bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" }}
+      {% if form.password.errors %}
+        <p class="text-red-600 text-sm mt-1">{{ form.password.errors.0 }}</p>
+      {% endif %}
+    </div>
+
+    {% if form.remember %}
+    <div class="flex items-center">
+      {{ form.remember|add_class:"w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500" }}
+      <label for="{{ form.remember.id_for_label }}" class="ml-2 text-sm text-gray-900">
+        {{ form.remember.label }}
+      </label>
+    </div>
+    {% endif %}
+
+    <button type="submit" class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+      Se connecter
+    </button>
+  </form>
+
+  <div class="text-center mt-4 space-y-2">
+    <p class="text-sm text-gray-600">
+      Pas encore de compte ? 
+      <a href="{% url 'account_signup' %}" class="text-blue-700 underline">S'inscrire</a>
+    </p>
+    <p class="text-sm">
+      <a href="{% url 'account_reset_password' %}" class="text-blue-700 underline">Mot de passe oublié ?</a>
+    </p>
+  </div>
+</div>
+{% endblock %}

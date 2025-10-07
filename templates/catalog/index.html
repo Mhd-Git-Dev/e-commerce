@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Catalogue · Merchshop{% endblock %}
+{% block content %}
+<section class="py-4">
+  <h1 class="text-3xl font-bold mb-4">Catalogue</h1>
+  {% if products %}
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+    {% for p in products %}
+      {% include "partials/product_card.html" with product=p %}
+    {% endfor %}
+  </div>
+  {% else %}
+  <p class="text-gray-600">Aucun produit pour le moment.</p>
+  {% endif %}
+</section>
+{% endblock %}
